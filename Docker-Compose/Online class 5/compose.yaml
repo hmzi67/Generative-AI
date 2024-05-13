@@ -1,0 +1,38 @@
+# Yaml is a supperset of JSON 
+version: '1.0.0'
+name: "fastapi"
+services:
+  api:
+    build: 
+      context: ./class5
+      dockerfile: Dockerfile
+    container_name: myDevContainer
+    ports:
+      - "8000:8000"
+    networks:
+      - my_api_net
+    depends_on:
+      - postgres_db
+
+  postgres_db:
+    image: postgres:latest
+    restart: always
+    container_name: PostgresCount
+    environment:
+      - POSTGRES_USER=ziakhan
+      - POSTGRES_PASSWORD=my_password
+      - POSTGRES_DB=mydatabase
+    networks:
+      - my_api_net
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+
+volumes:
+  postgres_db:
+    driver: local
+
+networks:
+  my_api_net:
+

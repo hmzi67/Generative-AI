@@ -1,0 +1,14 @@
+
+FROM python:3.12
+
+RUN pip install poetry
+
+LABEL maintainer="hamzawaheed057@gmail.com"
+
+WORKDIR /code/
+
+COPY . /code/
+
+RUN poetry install
+
+CMD ["uvicorn", "run", "fastapi_database.main:app", "--reload"]

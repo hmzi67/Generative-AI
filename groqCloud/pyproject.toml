@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "groqcloud"
+version = "0.1.0"
+description = ""
+authors = ["hmzi67 <hamzawaheed057@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+groq = "^0.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

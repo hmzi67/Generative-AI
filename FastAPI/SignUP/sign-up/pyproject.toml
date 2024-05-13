@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "sign-up"
+version = "0.1.0"
+description = ""
+authors = ["hmzi67 <hamzawaheed057@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.110.2"
+sqlmodel = "^0.0.16"
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
