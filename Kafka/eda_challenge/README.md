@@ -15,7 +15,7 @@ docker pull apache/kafka:3.7.0
 ```
 Start the kafka docker container
 ```
-docker run -p 9092:9092 apache/kafka:3.7.0
+docker run -p 9092:9092 --name kafka-cont apache/kafka:3.7.0
 ```
 Open another console and check to see if container running:
 ```
@@ -89,4 +89,25 @@ This is a popular open-source web UI specifically designed for viewing Kafka top
 https://github.com/provectus/kafka-ui
 
 https://github.com/provectus/kafka-ui?tab=readme-ov-file#getting-started
+
+Creating Network:
+```
+docker network create -d bridge <network-name>
+```
+Check runnning network:
+```
+docker network ls
+```
+
+Run Kafka:
+```
+docker run -p 9092:9092 --network <network-name> --name <container-name> apache/kafka:3.7.0
+```
+
+Run Kafka UI:
+```
+docker run -it -p 8080:8080 --network <network-name> -e DYNAMIC_CONFIG_ENABLED=true provectuslabs/kafka-ui
+```
+
+Note: It will run for few second and then goes offline. We'll configure it in compose
 

@@ -1,0 +1,17 @@
+name: "learn_oauth_service"
+
+services:
+  auth-api-service:
+    image: "auth-api-service"
+    build: 
+      context: ./oauth_service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./oauth_service:/code
+    networks:
+      - auth-net
+
+networks:
+  auth-net:
