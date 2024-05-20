@@ -91,3 +91,5 @@ docker-compose down
 Enjoy using Kafka with an easy-to-use UI for management and monitoring!
 
 Feel free to use this Markdown content for your README.md file!
+
+- Kafka store data in offsets and offset is start from 0 and so on (like array)
