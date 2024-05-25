@@ -1,24 +1,3 @@
-# Kafka UI with Python
-
-## Date Source
-- Logs
-- CodeBase
-- Database
-- Change Data Capture - CDC - Postgress 
-
-If borker increase servser will also increase
-
-To get process ID we use following commands
-    
-    docker compose exec -it /bin/bash broker
-
-    ls
-
-    ps -ef | grep java
-
-## Bind mounting
-Bind mounting is a way to mount a directory from the host machine into a container. This allows the container to access files and directories on the host machine
-
 # 02_kafka_messaging
 
 ### AIOKafkaProducer

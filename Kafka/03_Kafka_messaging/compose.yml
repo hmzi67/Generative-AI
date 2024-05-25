@@ -1,15 +1,28 @@
 version: '3.8'
-
+name: template01
 services:
   api:
     build:
       context: ./microservice_01
       dockerfile: Dockerfile.dev
+    volumes:
+      - ./microservice_01:/code
     depends_on:
       - postgres_db
-      - broker
     ports:
       - "8000:8000"  # Expose container port 8000 to host port 8000
+
+  api2:
+    build: 
+      context: ./sign_up
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./sign_up:/code
+    depends_on:
+      - postgres_db
+    ports:
+      - "8001:8000"
+
   postgres_db:
     image: postgres:latest  # Use the official PostgreSQL image
     restart: always
@@ -19,18 +32,16 @@ services:
       POSTGRES_PASSWORD: Pp3INkGhV4fz
       POSTGRES_DB: ecommerce
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_db:/var/lib/postgresql/data
+
   broker:
     image: apache/kafka:3.7.0
     hostname: broker
     container_name: broker
     ports:
       - "9092:9092"
-      # volumes:
-      #   - ./create_topic.sh:/usr/local/bin/create_topic.sh
-      # entrypoint: ["sh", "-c", "sleep 60 && /usr/local/bin/create_topic.sh"]
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
@@ -46,6 +57,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+
   kafka-ui:
     image: provectuslabs/kafka-ui
     container_name: kafka-ui
@@ -57,9 +69,11 @@ services:
       DYNAMIC_CONFIG_ENABLED: "true"
     depends_on:
       - broker
+
 volumes:
   postgres_db:
     driver: local
+
 networks:
   default:
     driver: bridge
