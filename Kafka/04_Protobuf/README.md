@@ -35,6 +35,7 @@ docker exec -it <cont-name> /bin/bash
 cd app
 
 protoc --python_out=. todo.proto
+
 ```
 
 It will generate `todo_pb2.py` file.
