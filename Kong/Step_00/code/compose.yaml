@@ -13,6 +13,8 @@ services:
       - my_api_net
     depends_on:
       - postgres_db
+    volumes:
+      - ./class5:/code    # Sync local development directory with container code directory
 
   postgres_db:
     image: postgres:latest
@@ -27,7 +29,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_db:/var/lib/postgresql/data
+      - postgres_db:/var/lib/postgresql/data      # volume attachment
 
 volumes:
   postgres_db:

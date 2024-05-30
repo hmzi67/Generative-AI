@@ -17,5 +17,6 @@ def mian_root():
             "01": "Coding", 
             "02": "Study",
             "03" : "Sleep",
-            "04": "Cricket"
+            "04": "Cricket",
+            "05": "Coding"
         }
